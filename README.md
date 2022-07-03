@@ -1,4 +1,4 @@
-==tty字体设置==
+#### tty字体设置
 
 ```bash
 setfont ter-132n #暂时设置
@@ -11,12 +11,12 @@ setfont ter-132n #暂时设置
 FONT=ter-132n
 ```
 
-==kmscon==（可稍后）
+#### kmscon（可稍后）
 
 ```bash
 systemctl disable getty@tty1.service
 systemctl enable kmsconvt@tty1.service
-ln -s /usr/lib/systemd/system/kmsconvt\@.service /etc/systemd/system/autovt\@.service
+# Ctrl+Alt+Fx 切换 tty
 ```
 
 添加以下行以`/etc/kmscon/kmscon.conf`使用字体全局配置 kmscon：
@@ -25,10 +25,11 @@ ln -s /usr/lib/systemd/system/kmsconvt\@.service /etc/systemd/system/autovt\@.se
 
 ```bash
 font-name=JeiBrain Mono, WenQuanYi Micro Hei Mono
-font-size=20
+font-dpi=165 # 显示优于 font-size 设置
+palette=solarized # 该配色较舒适
 ```
 
-==联网==
+#### 联网
 
 iwctl
 
@@ -38,15 +39,15 @@ station wlan0 scan
 
 station wlan0 get-networks
 
-station wlan0 connect @PHICOMM_CF
+station wlan0 connect ` wifi `
 
-==更新系统时间==
+#### 更新系统时间
 
 ```bash
 timedatectl set-ntp true
 ```
 
-==分区==
+#### 分区
 
 ```bash
 lsblk #查看分区
@@ -60,11 +61,11 @@ mkdir /mnt/boot #创建启动分区
 mount /dev/EFI分区 /mnt/boot #再挂载（lsblk查看windows的EFI分区号）
 ```
 
-==换源==
+#### 换源
 
 nano /etc/pacman.d/mirrorlist
 
-==安装==
+#### 安装
 
 ```bash
 pacstrap /mnt base linux linux-firmware # 基本安装
@@ -73,7 +74,7 @@ pacstrap /mnt base linux linux-firmware # 基本安装
 genfstab -U /mnt >> /mnt/etc/fstab # 生成fstab文件
 cat /mnt/etc/fstab # 检查一下
 ```
-==配置系统==
+#### 配置系统
 
 ``` bash
 arch-chroot /mnt # Change root 到新安装的系统
@@ -81,7 +82,7 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime # 设置时区
 hwclock --systohc # 生成 /etc/adjtime
 ```
 
-==本地化==
+#### 本地化
 
 编辑 `/etc/locale.gen`，然后取消掉 `en_US.UTF-8 UTF-8` 和其他需要的区域设置前的注释，接着：
 
@@ -95,7 +96,7 @@ locale-gen
 LANG=en_US.UTF-8
 ```
 
-==网络配置==
+#### 网络配置
 
 ``` bash
 pacman -S networkmanager
@@ -103,13 +104,13 @@ systemd enable networkmanager.service
 # nmtui
 ```
 
-==设置 Root 密码==
+#### 设置 Root 密码
 
 ``` bash
 passwd
 ```
 
-==Grub==
+#### Grub
 
 ``` bash
 pacman -S grub efibootmgr #安装
@@ -117,7 +118,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB #安
 grub-mkconfig -o /boot/grub/grub.cfg #生成配置文件
 ```
 
-==重启==
+#### 重启
 
 ``` bash
 exit #退出chroot环境
@@ -125,7 +126,7 @@ umount -R /mnt #卸载被挂载分区
 reboot
 ```
 
-==用户管理==
+#### 用户管理
 
 ``` bash
 useradd -m -G wheel ageha
