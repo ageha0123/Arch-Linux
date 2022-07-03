@@ -19,9 +19,13 @@ systemctl enable kmsconvt@tty1.service
 # Ctrl+Alt+Fx 切换 tty
 ```
 
-添加以下行以`/etc/kmscon/kmscon.conf`使用字体全局配置 kmscon：
+安装以下字体：
 
-前提要安装 ttf-jetbrains-mono 和 wqy-microhei
+``` bash
+ pacman -S ttf-jetbrains-mono wqy-microhei
+```
+
+添加以下行到`/etc/kmscon/kmscon.conf`
 
 ```bash
 font-name=JeiBrain Mono, WenQuanYi Micro Hei Mono
@@ -31,6 +35,7 @@ palette=solarized # 该配色较舒适
 
 #### 联网
 
+``` bash
 iwctl
 
 device list
@@ -39,7 +44,8 @@ station wlan0 scan
 
 station wlan0 get-networks
 
-station wlan0 connect ` wifi `
+station wlan0 connect <要连接的WiFi>
+```
 
 #### 更新系统时间
 
@@ -63,8 +69,9 @@ mount /dev/EFI分区 /mnt/boot #再挂载（lsblk查看windows的EFI分区号）
 
 #### 换源
 
+``` bash
 nano /etc/pacman.d/mirrorlist
-
+```
 #### 安装
 
 ```bash
