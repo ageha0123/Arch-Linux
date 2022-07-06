@@ -1,3 +1,9 @@
+font pango:DejaVu Sans Mono 10
+
+exec --no-startup-id ~/Downloads/clash/Clash\ for\ Windows-0.19.23-x64-linux/cfw
+exec --no-startup-id dunst
+exec --no-startup-id imwheel -b "45"
+exec --no-startup-id ~/.fehbg
 exec --no-startup-id polybar example
 
 for_window [class=".*"] border pixel 0
@@ -8,30 +14,25 @@ gaps bottom 16
 gaps left  135
 gaps right 135
 
-floating_modifier Mod1
 bindsym Mod1+q kill
 bindsym Mod1+f fullscreen toggle
 bindsym Mod1+s floating toggle
 bindsym Mod1+Shift+r restart
-bindsym Mod1+Shift+e "i3-msg exit"
+bindsym Mod1+Shift+e exit
+
+focus_follows_mouse no
+floating_modifier Mod1
 
 bindsym Mod1+Return exec alacritty
-bindsym Mod1+d exec ""
+bindsym Mod1+d exec "rofi -show drun"
 bindsym Mod4+l exec ""
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
+for_window [class="Google-chrome"] move to workspace 1; workspace 1
+for_window [class="Alacritty"] move to workspace 2; workspace 2
+for_window [class="Spotify"] move to workspace 4; workspace 4
+for_window [class="TelegramDesktop"] move to workspace 3; workspace3
 
-for_window [class="Google-chrome"] move to workspace $ws1; workspace $ws1
-for_window [class="Alacritty"] move to workspace $ws2; workspace $ws2
-for_window [class="Spotify"] move to workspace $ws3; workspace $ws3
-for_window [class="TelegramDesktop"] move to workspace $ws4; workspace $ws4
-
-bindsym Mod1+1 workspace $ws1
-bindsym Mod1+2 workspace $ws2
-bindsym Mod1+3 workspace $ws3
-bindsym Mod1+4 workspace $ws4
+bindsym Mod1+1 workspace 1
+bindsym Mod1+2 workspace 2
+bindsym Mod1+3 workspace 3
+bindsym Mod1+4 workspace 4
