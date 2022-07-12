@@ -5,6 +5,12 @@ exec --no-startup-id dunst
 exec --no-startup-id imwheel -b "45"
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id polybar example
+exec --no-startup-id picom -b
+
+bindsym Mod1+r resize set 1920 px 1030 px, move position center
+floating_maximum_size 1920 x 1030
+bindsym Mod1+c move position center
+
 
 for_window [class=".*"] border pixel 0
 gaps inner 5
@@ -25,7 +31,6 @@ floating_modifier Mod1
 
 bindsym Mod1+Return exec alacritty
 bindsym Mod1+d exec "rofi -show drun"
-bindsym Mod4+l exec ""
 
 for_window [class="Google-chrome"] move to workspace 1; workspace 1
 for_window [class="Alacritty"] move to workspace 2; workspace 2
@@ -36,3 +41,8 @@ bindsym Mod1+1 workspace 1
 bindsym Mod1+2 workspace 2
 bindsym Mod1+3 workspace 3
 bindsym Mod1+4 workspace 4
+
+bindsym Mod4+1 move workspace 1
+bindsym Mod4+2 move workspace 2
+bindsym Mod4+3 move workspace 3
+bindsym Mod4+4 move workspace 4
