@@ -107,6 +107,6 @@ fc-list
 ```
 #### 查看流量
 ``` bash
-ip -sh link
+ip -s -h link
 ```
 
