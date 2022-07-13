@@ -140,8 +140,7 @@ useradd -m -G wheel ageha
 passwd ageha
 EDITOR=nano visudo #删除含 %wheel 行注释
 ```
-
-
-
-
-
+#### 查找字体
+``` bash
+fc-list
+```
