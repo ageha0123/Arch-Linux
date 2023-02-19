@@ -1,0 +1,75 @@
+mode "resize" {
+	bindsym left resize shrink width 10px
+	bindsym right resize grow width 10px
+	bindsym up resize grow height 10px
+	bindsym down resize shrink height 10px
+	bindsym Escape mode "default"
+#	bindsym Return mode "default"
+}
+
+#input {
+#	"1739:32382:MSFT0001:00_06CB:7E7E_Touchpad" {
+#		dwt enabled
+#    		tap enabled
+#    		natural_scroll disabled
+#    		middle_emulation enabled
+#	}
+#}
+
+# swaymsg -t get_outputs 命令获取输出设备
+output {
+	eDP-1 scale 1.5
+	# 需要 swaybg
+	# eDP-1 bg ~/Downloads/mk.jpg fill
+}
+
+gaps {
+	inner 10
+	outer 0
+	top   10
+	bottom 10
+	left  10
+	right 10
+}
+
+bindsym {
+	#窗口聚焦
+	Mod4+left focus left 
+	Mod4+right focus right
+	Mod4+up focus up
+	Mod4+down focus down
+	#sway控制
+	Mod4+r exec "swaymsg reload"
+	Mod4+Shift+e exit
+	#移动窗口
+	Mod1+left move left 10
+	Mod1+up move up 10
+	Mod1+down move down 10
+	Mod1+right move right 10
+	Mod1+q kill
+	Mod1+f fullscreen toggle
+	Mod1+s floating toggle
+	#应用
+	Mod1+Return exec alacritty
+	Mod4+f exec firefox
+	#桌面空间
+	Mod1+1 workspace 1
+	Mod1+2 workspace 2
+	Mod1+3 workspace 3
+	Mod4+1 move workspace 1
+	Mod4+2 move workspace 2
+	Mod4+3 move workspace 3
+	#模式切换
+	Mod1+r mode "resize"
+}
+
+for_window {
+	[app_id=".*"] border pixel 0
+	[app_id="mpv"] fullscreen enable
+	[app_id="Alacritty"] floating enable; move to workspace 1; workspace 1
+	[app_id="mpv"] move to workspace 2; workspace 2
+	[app_id="firefox"] move to workspace 3; workspace 3
+}
+
+corner_radius 10
+default_border none
