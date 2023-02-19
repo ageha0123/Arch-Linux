@@ -38,10 +38,10 @@ bindsym {
 	Mod4+right focus right
 	Mod4+up focus up
 	Mod4+down focus down
-    #sway控制
+        #sway控制
 	Mod4+r exec "swaymsg reload"
 	Mod4+Shift+e exit
-    #移动窗口
+        #移动窗口
 	Mod1+left move left 10
 	Mod1+up move up 10
 	Mod1+down move down 10
@@ -49,10 +49,10 @@ bindsym {
 	Mod1+q kill
 	Mod1+f fullscreen toggle
 	Mod1+s floating toggle
-    #应用
+        #应用
 	Mod1+Return exec alacritty
 	Mod4+f exec firefox
-    #桌面空间
+        #桌面空间
 	Mod1+1 workspace 1
 	Mod1+2 workspace 2
 	Mod1+3 workspace 3
