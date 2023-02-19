@@ -1,4 +1,5 @@
 # 注释
+
 mode "resize" {
 	bindsym left resize shrink width 10px
 	bindsym right resize grow width 10px
