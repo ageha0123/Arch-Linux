@@ -1,48 +1,69 @@
-font pango:DejaVu Sans Mono 10
+mode "resize" {
+	bindsym left resize shrink width 10px
+	bindsym right resize grow width 10px
+	bindsym up resize grow height 10px
+	bindsym down resize shrink height 10px
+	bindsym Escape mode "default"
+	bindsym Return mode "default"
+}
 
-exec --no-startup-id ~/Downloads/clash/Clash\ for\ Windows-0.19.23-x64-linux/cfw
-exec --no-startup-id dunst
-exec --no-startup-id imwheel -b "45"
-exec --no-startup-id ~/.fehbg
-exec --no-startup-id polybar example
-exec --no-startup-id picom -b
+input {
+	"1739:32382:MSFT0001:00_06CB:7E7E_Touchpad" {
+		dwt enabled
+    		tap enabled
+    		natural_scroll disabled
+    		middle_emulation enabled
+	}
+}
 
-bindsym Mod1+r resize set 1920 px 1030 px, move position center
-floating_maximum_size 1920 x 1030
-bindsym Mod1+c move position center
+output {
+	eDP-1 scale 1.5
+	eDP-1 bg ~/Downloads/mk.jpg fill
+}
 
+gaps {
+	inner 10
+	outer 0
+	top   10
+	bottom 10
+	left  10
+	right 10
+}
 
-for_window [class=".*"] border pixel 0
-gaps inner 5
-gaps outer 0
-gaps top   16
-gaps bottom 16
-gaps left  135
-gaps right 135
+bindsym {
+	Mod4+m exec "mv ~/Downloads/*.flac ~/.config/mpd/music/ && mpc clear > /dev/null && mpc update > /dev/null && mpc add / && mpc play"
+	Mod4+left focus left 
+	Mod4+right focus right
+	Mod4+up focus up
+	Mod4+down focus down
+	Mod1+left move left 10
+	Mod1+up move up 10
+	Mod1+down move down 10
+	Mod1+right move right 10
+	Mod1+q kill
+	Mod1+f fullscreen toggle
+	Mod1+s floating toggle
+	Mod4+r exec "swaymsg reload"
+	Mod1+Shift+e exit
+	Mod1+Return exec alacritty
+	Mod4+f exec firefox
+	Mod1+1 workspace 1
+	Mod1+2 workspace 2
+	Mod1+3 workspace 3
+	Mod4+1 move workspace 1
+	Mod4+2 move workspace 2
+	Mod4+3 move workspace 3
+	Mod1+r mode "resize"
+}
 
-bindsym Mod1+q kill
-bindsym Mod1+f fullscreen toggle
-bindsym Mod1+s floating toggle
-bindsym Mod1+Shift+r restart
-bindsym Mod1+Shift+e exit
+for_window {
+	[app_id="firefox"] move to workspace 3; workspace 3
+	[app_id="mpv"] move to workspace 2; workspace 2
+	[app_id="mpv"] fullscreen enable
+	[app_id=".*"] border pixel 0
+	[app_id="Alacritty"] floating enable; move to workspace 1; workspace 1
+}
 
-focus_follows_mouse no
-floating_modifier Mod1
+corner_radius 10
+default_border none
 
-bindsym Mod1+Return exec alacritty
-bindsym Mod1+d exec "rofi -show drun"
-
-for_window [class="Google-chrome"] move to workspace 1; workspace 1
-for_window [class="Alacritty"] move to workspace 2; workspace 2
-for_window [class="Spotify"] move to workspace 4; workspace 4
-for_window [class="TelegramDesktop"] move to workspace 3; workspace3
-
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-
-bindsym Mod4+1 move workspace 1
-bindsym Mod4+2 move workspace 2
-bindsym Mod4+3 move workspace 3
-bindsym Mod4+4 move workspace 4
