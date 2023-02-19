@@ -15,7 +15,7 @@ systemctl enable kmsconvt@tty1.service
 ```
 安装以下字体：
 ``` bash
- pacman -S ttf-jetbrains-mono wqy-microhei
+ pacman -S ttf-jetbrains-mono wqy-microhei terminus-font
 ```
 添加以下行到`/etc/kmscon/kmscon.conf`
 ```bash
