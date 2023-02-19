@@ -76,7 +76,7 @@ LANG=en_US.UTF-8
 #### 网络配置
 ``` bash
 pacman -S networkmanager
-systemd enable networkmanager.service
+systemctl enable NetworkManager.service
 # nmtui
 ```
 #### 设置 Root 密码
